@@ -7,7 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Unbounded:wght@800;900&display=swap" rel="stylesheet">
 
     <style>
         * {
@@ -26,20 +26,20 @@
             justify-content: center;
             align-items: center;
             color: #ffffff;
-            /* Плавный градиент из твоей палитры: фиолетовый, синий, голубой, океанический, космический синий, аквамарин, сиреневый */
-            background: linear-gradient(-45deg, #7B2CBF, #3A0CA3, #0077B6, #03045E, #4CC9F0, #72EFDD, #D6BCFA);
+            /* Смещаем акцент в глубокие фиолетовые, неоновые сиреневые и космические синие оттенки */
+            background: linear-gradient(-45deg, #1A0033, #3C096C, #5A189A, #7B2CBF, #240046, #03045E, #3A0CA3);
             background-size: 400% 400%;
-            animation: slowGradient 28s ease infinite;
+            animation: slowGradient 22s ease infinite;
         }
 
-        /* Медленная и плавная анимация фона */
+        /* Медленный перелив глубокого фиолетового космоса */
         @keyframes slowGradient {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        /* Холст для частиц Grok */
+        /* Канвас для кастомных звёзд */
         #particles {
             position: fixed;
             top: 0;
@@ -50,79 +50,76 @@
             z-index: 1;
         }
 
-        /* Мягкая интерактивная обводка вокруг курсора */
+        /* ИСПРАВЛЕНО: Мягкое излучение света строго под курсором */
         .cursor-glow {
             position: fixed;
-            width: 45px;
-            height: 45px;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2), inset 0 0 10px rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.02);
+            top: 0;
+            left: 0;
+            width: 90px;
+            height: 90px;
+            /* Вместо жесткой рамки делаем объёмное радиальное излучение */
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.08) 45%, rgba(255, 255, 255, 0) 70%);
             border-radius: 50%;
             pointer-events: none;
             transform: translate(-50%, -50%);
             z-index: 9999;
             opacity: 0;
+            filter: blur(1px);
             transition: opacity 0.4s ease;
         }
 
-        /* Логотип сверху */
+        /* ИСПРАВЛЕНО: Шрифт Unbounded (приниженный, жирный), надпись чуть выше */
         .logo {
             position: absolute;
-            top: 40px;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.6) 100%);
+            top: 30px; /* Сдвинули слегка наверх */
+            font-family: 'Unbounded', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.7) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             z-index: 10;
         }
 
-        /* Главное окно с максимальным Glassmorphism эффектом */
+        /* Идеальный Glassmorphism */
         .glass-card {
             position: relative;
             max-width: 580px;
             width: 90%;
             padding: 45px;
-            background: rgba(255, 255, 255, 0.03);
-            /* Сильное размытие заднего плана + повышение насыщенности для сочности цветов */
-            backdrop-filter: blur(25px) saturate(170%);
-            -webkit-backdrop-filter: blur(25px) saturate(170%);
-            /* Двойная тонкая грань для эффекта стекла */
-            border: 1px solid rgba(255, 255, 255, 0.13);
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 28px;
-            /* Внутреннее свечение сверху и глубокая тень снизу */
             box-shadow: 
                 0 30px 60px rgba(0, 0, 0, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.25);
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
             text-align: center;
             z-index: 5;
-            animation: cardAppear 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: cardAppear 1s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         @keyframes cardAppear {
-            0% { opacity: 0; transform: translateY(20px) scale(0.98); }
+            0% { opacity: 0; transform: translateY(15px) scale(0.99); }
             100% { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* Заголовок 404 */
+        /* Жирные приземистые цифры 404 под стиль логотипа */
         .glass-card h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 5.5rem;
-            font-weight: 700;
+            font-family: 'Unbounded', sans-serif;
+            font-size: 5rem;
+            font-weight: 900;
             line-height: 1;
             margin-bottom: 25px;
-            letter-spacing: -2px;
-            background: linear-gradient(180deg, #ffffff 30%, rgba(255, 255, 255, 0.3) 100%);
+            letter-spacing: -3px;
+            background: linear-gradient(180deg, #ffffff 40%, rgba(255, 255, 255, 0.4) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
         }
 
-        /* Стилизация текста */
         .glass-card p {
             font-size: 0.95rem;
             line-height: 1.6;
@@ -132,7 +129,6 @@
             text-justify: inter-word;
         }
 
-        /* Разделитель между языками */
         .divider {
             border: none;
             height: 1px;
@@ -144,9 +140,7 @@
 <body>
 
     <canvas id="particles"></canvas>
-    
     <div class="cursor-glow" id="glow"></div>
-
     <header class="logo">@Kivasily</header>
 
     <main class="glass-card">
@@ -157,12 +151,12 @@
     </main>
 
     <script>
-        // --- 1. Логика плавающих частиц (Grok-style) ---
+        // --- 1. Модернизированный движок разнообразных плывущих звёзд ---
         const canvas = document.getElementById('particles');
         const ctx = canvas.getContext('2d');
 
-        let particles = [];
-        const particleCount = 55; // Оптимальное количество для эффекта "глубины"
+        let stars = [];
+        const starCount = 85; // Увеличили количество для плотности космоса
 
         function resizeCanvas() {
             canvas.width = window.innerWidth;
@@ -171,26 +165,38 @@
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
-        class Particle {
+        class Star {
             constructor() {
                 this.reset();
-                this.y = Math.random() * canvas.height; // Рандомное распределение при старте
+                this.y = Math.random() * canvas.height; 
             }
 
             reset() {
                 this.x = Math.random() * canvas.width;
-                // Направление: кто-то летит вверх (отрицательная скорость), кто-то вниз (положительная)
-                this.vy = (Math.random() * 0.3 + 0.1) * (Math.random() > 0.5 ? 1 : -1);
-                this.vx = (Math.random() * 0.15 - 0.075);
-                this.radius = Math.random() * 2 + 0.6; // Маленькие элегантные точки
-                this.alpha = Math.random() * 0.4 + 0.1; // Разная прозрачность для объема
+                // Разброс скоростей: кто-то медленно дрейфует вверх, кто-то вниз
+                this.vy = (Math.random() * 0.25 + 0.05) * (Math.random() > 0.5 ? 1 : -1);
+                this.vx = (Math.random() * 0.1 - 0.05);
+                
+                // ИСПРАВЛЕНО: Большое разнообразие размеров (от совсем крошечных до крупных светящихся)
+                this.radius = Math.random() * Math.random() * 3.8 + 0.5; 
+                
+                this.alpha = Math.random() * 0.5 + 0.1;
+                this.maxAlpha = Math.random() * 0.4 + 0.4;
+                // Скорость мерцания (twinkle)
+                this.twinkleSpeed = Math.random() * 0.01 + 0.003;
             }
 
             update() {
                 this.y += this.vy;
                 this.x += this.vx;
 
-                // Перенос частиц на противоположную сторону, если они улетели за экран
+                // Плавное изменение прозрачности (эффект мерцания звезд)
+                this.alpha += this.twinkleSpeed;
+                if (this.alpha > this.maxAlpha || this.alpha < 0.1) {
+                    this.twinkleSpeed = -this.twinkleSpeed;
+                }
+
+                // Бесшовный перенос при выходе за границы экрана
                 if (this.y < -10) { this.y = canvas.height + 10; this.x = Math.random() * canvas.width; }
                 if (this.y > canvas.height + 10) { this.y = -10; this.x = Math.random() * canvas.width; }
                 if (this.x < -10) this.x = canvas.width + 10;
@@ -200,19 +206,25 @@
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                // Для крупных звезд добавляем легкое размытое неоновое свечение вокруг
+                if (this.radius > 2.5) {
+                    ctx.shadowBlur = 10;
+                    ctx.shadowColor = 'rgba(255, 255, 255, 0.6)';
+                } else {
+                    ctx.shadowBlur = 0;
+                }
                 ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
                 ctx.fill();
             }
         }
 
-        // Заполняем массив частиц
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(new Particle());
+        for (let i = 0; i < starCount; i++) {
+            stars.push(new Star());
         }
 
-        // --- 2. Логика следования мягкого света за курсором (с эффектом Lerp для плавности) ---
+        // --- 2. ИСПРАВЛЕНО: Точнейший трекинг курсора + эффект плавного догона (Lerp) ---
         const glow = document.getElementById('glow');
-        let mouse = { x: -100, y: -100, targetX: -100, targetY: -100 };
+        let mouse = { x: -200, y: -200, targetX: -200, targetY: -200 };
         let isMouseMoved = false;
 
         window.addEventListener('mousemove', (e) => {
@@ -232,20 +244,22 @@
             isMouseMoved = false;
         });
 
-        // --- 3. Главный цикл анимации (Рендеринг) ---
+        // --- 3. Рендеринг анимации ---
         function render() {
+            // Сбрасываем тени контекста перед очисткой, чтобы не тормозило
+            ctx.shadowBlur = 0;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Рендерим частицы
-            particles.forEach(particle => {
-                particle.update();
-                particle.draw();
+            // Рисуем все звёзды
+            stars.forEach(star => {
+                star.update();
+                star.draw();
             });
 
-            // Плавное следование обводки (интерполяция координат)
+            // Центрирование светового пятна под курсором
             if (isMouseMoved) {
-                mouse.x += (mouse.targetX - mouse.x) * 0.12;
-                mouse.y += (mouse.targetY - mouse.y) * 0.12;
+                mouse.x += (mouse.targetX - mouse.x) * 0.15;
+                mouse.y += (mouse.targetY - mouse.y) * 0.15;
                 glow.style.transform = `translate3d(${mouse.x}px, ${mouse.y}px, 0) translate(-50%, -50%)`;
             }
 
