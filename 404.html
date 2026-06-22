@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Страница не найдена</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+            /* Плавный градиент из твоей палитры: фиолетовый, синий, голубой, океанический, космический синий, аквамарин, сиреневый */
+            background: linear-gradient(-45deg, #7B2CBF, #3A0CA3, #0077B6, #03045E, #4CC9F0, #72EFDD, #D6BCFA);
+            background-size: 400% 400%;
+            animation: slowGradient 28s ease infinite;
+        }
+
+        /* Медленная и плавная анимация фона */
+        @keyframes slowGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Холст для частиц Grok */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Мягкая интерактивная обводка вокруг курсора */
+        .cursor-glow {
+            position: fixed;
+            width: 45px;
+            height: 45px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2), inset 0 0 10px rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        /* Логотип сверху */
+        .logo {
+            position: absolute;
+            top: 40px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.6) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+
+        /* Главное окно с максимальным Glassmorphism эффектом */
+        .glass-card {
+            position: relative;
+            max-width: 580px;
+            width: 90%;
+            padding: 45px;
+            background: rgba(255, 255, 255, 0.03);
+            /* Сильное размытие заднего плана + повышение насыщенности для сочности цветов */
+            backdrop-filter: blur(25px) saturate(170%);
+            -webkit-backdrop-filter: blur(25px) saturate(170%);
+            /* Двойная тонкая грань для эффекта стекла */
+            border: 1px solid rgba(255, 255, 255, 0.13);
+            border-radius: 28px;
+            /* Внутреннее свечение сверху и глубокая тень снизу */
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.25);
+            text-align: center;
+            z-index: 5;
+            animation: cardAppear 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes cardAppear {
+            0% { opacity: 0; transform: translateY(20px) scale(0.98); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* Заголовок 404 */
+        .glass-card h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 5.5rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 25px;
+            letter-spacing: -2px;
+            background: linear-gradient(180deg, #ffffff 30%, rgba(255, 255, 255, 0.3) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
+        }
+
+        /* Стилизация текста */
+        .glass-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.85);
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
+        /* Разделитель между языками */
+        .divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            margin: 25px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="particles"></canvas>
+    
+    <div class="cursor-glow" id="glow"></div>
+
+    <header class="logo">@Kivasily</header>
+
+    <main class="glass-card">
+        <h1>404</h1>
+        <p>If you've reached this page, the link you followed is invalid or a placeholder. Please contact support to fix the issue. If you absolutely must follow this link, try searching for other information on the page you came from.</p>
+        <div class="divider"></div>
+        <p>Если вы попали на эту страницу, значит, ссылка, по которой вы перешли, недействительна или является временной. Пожалуйста, свяжитесь со службой поддержки для решения проблемы. Если вам обязательно нужно перейти по этой ссылке, попробуйте поискать другую информацию на странице, с которой вы пришли.</p>
+    </main>
+
+    <script>
+        // --- 1. Логика плавающих частиц (Grok-style) ---
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+
+        let particles = [];
+        const particleCount = 55; // Оптимальное количество для эффекта "глубины"
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.reset();
+                this.y = Math.random() * canvas.height; // Рандомное распределение при старте
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                // Направление: кто-то летит вверх (отрицательная скорость), кто-то вниз (положительная)
+                this.vy = (Math.random() * 0.3 + 0.1) * (Math.random() > 0.5 ? 1 : -1);
+                this.vx = (Math.random() * 0.15 - 0.075);
+                this.radius = Math.random() * 2 + 0.6; // Маленькие элегантные точки
+                this.alpha = Math.random() * 0.4 + 0.1; // Разная прозрачность для объема
+            }
+
+            update() {
+                this.y += this.vy;
+                this.x += this.vx;
+
+                // Перенос частиц на противоположную сторону, если они улетели за экран
+                if (this.y < -10) { this.y = canvas.height + 10; this.x = Math.random() * canvas.width; }
+                if (this.y > canvas.height + 10) { this.y = -10; this.x = Math.random() * canvas.width; }
+                if (this.x < -10) this.x = canvas.width + 10;
+                if (this.x > canvas.width + 10) this.x = -10;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
+                ctx.fill();
+            }
+        }
+
+        // Заполняем массив частиц
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        // --- 2. Логика следования мягкого света за курсором (с эффектом Lerp для плавности) ---
+        const glow = document.getElementById('glow');
+        let mouse = { x: -100, y: -100, targetX: -100, targetY: -100 };
+        let isMouseMoved = false;
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.targetX = e.clientX;
+            mouse.targetY = e.clientY;
+            
+            if (!isMouseMoved) {
+                mouse.x = e.clientX;
+                mouse.y = e.clientY;
+                glow.style.opacity = '1';
+                isMouseMoved = true;
+            }
+        });
+
+        window.addEventListener('mouseout', () => {
+            glow.style.opacity = '0';
+            isMouseMoved = false;
+        });
+
+        // --- 3. Главный цикл анимации (Рендеринг) ---
+        function render() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Рендерим частицы
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            // Плавное следование обводки (интерполяция координат)
+            if (isMouseMoved) {
+                mouse.x += (mouse.targetX - mouse.x) * 0.12;
+                mouse.y += (mouse.targetY - mouse.y) * 0.12;
+                glow.style.transform = `translate3d(${mouse.x}px, ${mouse.y}px, 0) translate(-50%, -50%)`;
+            }
+
+            requestAnimationFrame(render);
+        }
+        render();
+    </script>
+</body>
+</html>
